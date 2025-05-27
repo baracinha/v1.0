@@ -63,7 +63,7 @@ def menu():
 
         match option:
             case '1':
-                pass
+                adicionar_livro()
             case '2':
                 pass
             case '3':
