@@ -33,23 +33,74 @@ Adicionar a possibilidade de verificar se o livro já está cadastrado antes de 
  - (1) Utilização de boas praticas e standards. 
  - (1) Uso de Exceções. '''
 
+import json
+
 livros = []
 
+livro = 0
+
+numlivr = 0
 
 def adicionar_livro():
-    pass
+    while True:
+        
+        global numlivr
+        autor = input("insere o autor do livro")
+        title = input("insere o nome do livro")
+        data = input("insere a data de punlicacao")
+
+        livro = {
+            "numlivr" : numlivr,
+            "title" : title,
+            "autor" : autor,
+            "data" : data
+        }
+
+                 
+
+
+        livros.append(livro)
+        numlivr =+1
+
+        menuinicial = input("deseja voltar ao menu inicial? (s/n): ")
+
+        if menuinicial == 's':
+            return
+        elif menuinicial == 'n':
+            pass
+        
 
 def excluir_livro():
     pass
 
+def procurar_livro():
+    while True:
+        search = input("insere o nome do livro que queres procurar: ")
+        for livro in livros:
+            if livros(livro['nome']) == search:
+                print(f"nome :{livro['nome']}")
+
 def listar_livros():
-    pass
+    while True:
+        for livro in livros:
+            print(f"numero : {livro['numlivr']})")
+            print(f"nome {livro['numlivr']})")
+
+
+            epa = input("deseja voltar ao menu inicial?: ")
+
+            if epa == 's':
+                return
+            elif epa == 'n':
+                continue
 
 def ordenar_livbros():
     pass
 
 def sair():
     pass
+
+
 
 def menu():
     while True:
@@ -60,18 +111,20 @@ def menu():
         print("4 - Ordenar livros")
         print("5 - Listar livros")
         print("6 - Sair do programa")
+        
+        option = input("insere a operação que queres efetuar: ")
 
         match option:
             case '1':
                 adicionar_livro()
             case '2':
-                pass
+                procurar_livro()
             case '3':
                 pass
             case '4':
                 pass
             case '5':
-                pass
+                listar_livros()
             case '6':
                 break
 
