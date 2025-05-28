@@ -45,9 +45,12 @@ def adicionar_livro():
     while True:
         
         global numlivr
-        autor = input("insere o autor do livro")
-        title = input("insere o nome do livro")
-        data = input("insere a data de punlicacao")
+        autor = input("insere o autor do livro: ")
+        title = input("insere o nome do livro: ")
+        data = int(input("insere a data de punlicacao: "))
+
+        if data(ValueError):
+            print("bisa")
 
         livro = {
             "numlivr" : numlivr,
@@ -60,14 +63,14 @@ def adicionar_livro():
 
 
         livros.append(livro)
-        numlivr =+1
+        numlivr +=1
 
         menuinicial = input("deseja voltar ao menu inicial? (s/n): ")
 
         if menuinicial == 's':
             return
         elif menuinicial == 'n':
-            pass
+            continue
         
 
 def excluir_livro():
@@ -81,18 +84,19 @@ def procurar_livro():
                 print(f"nome :{livro['nome']}")
 
 def listar_livros():
-    while True:
         for livro in livros:
             print(f"numero : {livro['numlivr']})")
-            print(f"nome {livro['numlivr']})")
+            print(f"nome: {livro['title']})")
+            print(f"autor: {livro['autor']})")
+            print(f"data: {livro['data']}")
 
+        epa = input("deseja voltar ao menu inicial?: ")
+        if epa == 's':
+            return
+        elif epa == 'n':
+            listar_livros()
 
-            epa = input("deseja voltar ao menu inicial?: ")
-
-            if epa == 's':
-                return
-            elif epa == 'n':
-                continue
+            
 
 def ordenar_livbros():
     pass
