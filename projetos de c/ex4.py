@@ -43,11 +43,14 @@ numlivr = 0
 
 def adicionar_livro():
     while True:
-        
-        global numlivr
-        autor = input("insere o autor do livro")
-        title = input("insere o nome do livro")
-        data = input("insere a data de punlicacao")
+        try:
+            global numlivr
+            autor = input("insere o autor do livro: ")
+            title = input("insere o nome do livro: ")
+            data = int(input("insere o ano de publicacao: "))
+
+        except ValueError:
+            print("data inserida inválida ou formato incorreto")
 
         livro = {
             "numlivr" : numlivr,
@@ -60,45 +63,64 @@ def adicionar_livro():
 
 
         livros.append(livro)
-        numlivr =+1
+        numlivr +=1
 
         menuinicial = input("deseja voltar ao menu inicial? (s/n): ")
 
         if menuinicial == 's':
             return
         elif menuinicial == 'n':
-            pass
+            continue
         
 
 def excluir_livro():
-    pass
+    while True:
+        exc = int(input("insere o id do livro que queres excluir: "))
+
+        livros.pop(exc)
+        return
+            
+
 
 def procurar_livro():
     while True:
         search = input("insere o nome do livro que queres procurar: ")
         for livro in livros:
-            if livros(livro['nome']) == search:
-                print(f"nome :{livro['nome']}")
+            if livro['title'] == search:
+                print(f"nome :{livro['title']}")
+                print(f"autor :{livro['autor']}")
+                print(f"ano :{livro['data']}")
 
 def listar_livros():
-    while True:
+        if not livros:
+            print("não ha livros no catálogo")
         for livro in livros:
             print(f"numero : {livro['numlivr']})")
-            print(f"nome {livro['numlivr']})")
+            print(f"nome: {livro['title']})")
+            print(f"autor: {livro['autor']})")
+            print(f"data: {livro['data']}")
 
+        epa = input("deseja voltar ao menu inicial?: ")
+        if epa == 's':
+            return
+        elif epa == 'n':
+            listar_livros()
 
-            epa = input("deseja voltar ao menu inicial?: ")
-
-            if epa == 's':
-                return
-            elif epa == 'n':
-                continue
+            
 
 def ordenar_livbros():
-    pass
+    while True:
+            sorted(livros['titulo'])
+            for livro in livros:
+                print(f"numero : {livro['numlivr']})")
+                print(f"nome: {livro['title']})")
+                print(f"autor: {livro['autor']})")
+                print(f"data: {livro['data']}")
+
 
 def sair():
-    pass
+    print("adius")
+    return
 
 
 
@@ -120,13 +142,12 @@ def menu():
             case '2':
                 procurar_livro()
             case '3':
-                pass
+                excluir_livro()
             case '4':
-                pass
+                ordenar_livbros()
             case '5':
                 listar_livros()
             case '6':
-                break
-
+                sair()
 
 menu()
