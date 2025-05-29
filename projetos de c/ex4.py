@@ -92,8 +92,7 @@ def procurar_livro():
                 print(f"ano :{livro['data']}")
 
 def listar_livros():
-        if not livros:
-            print("não ha livros no catálogo")
+    while True:
         for livro in livros:
             print(f"numero : {livro['numlivr']})")
             print(f"nome: {livro['title']})")
