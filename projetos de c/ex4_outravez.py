@@ -33,121 +33,104 @@ Adicionar a possibilidade de verificar se o livro já está cadastrado antes de 
  - (1) Utilização de boas praticas e standards. 
  - (1) Uso de Exceções. '''
 
-import json
-
 livros = []
 
-livro = 0
+indicelivr = 0
 
-numlivr = 1
+opcao = 0
 
 def adicionar_livro():
     while True:
         try:
-            global numlivr
-            autor = input("insere o autor do livro: ")
-            title = input("insere o nome do livro: ")
-            data = int(input("insere o ano de publicacao: "))
+            global indicelivr
+            nome = input("insere o nome do livro: ")
+            autor = input("insere o nome do autor do livro: ")
+            data = int(input("insere a data em que o livro foi publicado: "))
         except ValueError:
-            print("data inserida inválida ou formato incorreto")
+            print("input inserido de formato inválido")
 
         livro = {
-            "numlivr" : numlivr,
-            "title" : title,
+            "nome" : nome,
             "autor" : autor,
-            "data" : data
+            "data" : data,
+            "indicelivr" : indicelivr
         }
 
-                 
-
-
-        livros.append(livro)
-        numlivr +=1
-
-        menuinicial = input("deseja voltar ao menu inicial? (s/n): ")
-
-        if menuinicial == 's':
-            return
-        elif menuinicial == 'n':
-            continue
         
 
-def excluir_livro():
-    while True:
-        exc = int(input("insere o id do livro que queres excluir: "))
+        livros.append(livro)
+        indicelivr +=1
 
-        livros.pop(exc)
-        return
-            
+        ola = input("pretende voltar ao menu inicial? (s/n): ")
+        if ola == 's':
+            return
+        elif ola != 'n':
+            continue 
 
-
-def procurar_livro():
-    while True:
-        search = input("insere o nome do livro que queres procurar: ")
-        for livro in livros:
-            if livro['title'] == search:
-                print(f"nome :{livro['title']}")
-                print(f"autor :{livro['autor']}")
-                print(f"ano :{livro['data']}")
-
-def listar_livros():
+def procurar():
     while True:
         if not livros:
-            print
+            print("não ha livros ainda na lista my people")
+        search = input("insere o nome do livro ou autor que queres procurar: ")
+
         for livro in livros:
-            print(f"numero : {livro['numlivr']})")
-            print(f"nome: {livro['title']})")
-            print(f"autor: {livro['autor']})")
-            print(f"data: {livro['data']}")
+            if livro['nome'] == search:
+                print(f"\n\nnome: {livro['nome']}")
+                print(f"autor: {livro['autor']}")
+                print(f"ano: {livro['data']}")
+                
+            elif livro['autor'] == search:
+                print(f"\n\nnome: {livro['nome']}")
+                print(f"autor: {livro['autor']}")
+                print(f"ano: {livro['data']}")
 
-        epa = input("deseja voltar ao menu inicial?: ")
-        if epa == 's':
-            return
-        elif epa == 'n':
-            listar_livros()
-
+                ola = input("pretende voltar ao menu inicial? (s/n): ")
+                if ola == 's' or 'S':
+                    return
+                elif ola == 'n' or 'N':
+                    continue
             
-
-def ordenar_livbros():
+def listar():
     while True:
-            sorted(livros['titulo'])
-            for livro in livros:
-                print(f"numero : {livro['numlivr']})")
-                print(f"nome: {livro['title']})")
-                print(f"autor: {livro['autor']})")
-                print(f"data: {livro['data']}")
+        for livro in livros:
+                print(f"\n\nindice: {livro['indicelivr']}")
+                print(f"nome: {livro['nome']}")
+                print(f"autor: {livro['autor']}")
+                print(f"ano: {livro['data']}")
 
-
-def sair():
-    print("adius")
-    return
+        ola = input("pretende voltar ao menu inicial? (s/n): ")
+        if ola == 's' or 'S':
+            return
+        elif ola == 'n' or 'N':
+            continue
 
 
 
 def menu():
     while True:
-        option = 0
         print("1 - Adicionar novo livro")
-        print("2 - Procurar livro por titulo ou autor")
+        print("2 - Procurar livro ou autor")
         print("3 - Excluir livro")
         print("4 - Ordenar livros")
         print("5 - Listar livros")
         print("6 - Sair do programa")
-        
-        option = input("insere a operação que queres efetuar: ")
 
-        match option:
+        opcao = input("Insere a função que queres efetuar: ")
+
+        match opcao:
             case '1':
                 adicionar_livro()
             case '2':
-                procurar_livro()
+                procurar()
             case '3':
-                excluir_livro()
+                pass
             case '4':
-                ordenar_livbros()
+                pass
             case '5':
-                listar_livros()
+                listar()
             case '6':
-                sair()
+                pass
+
+
 
 menu()
